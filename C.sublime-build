@@ -10,11 +10,11 @@
     },
     {
             "name": "BulidDLL32",
-            "shell_cmd": "gcc -m32 -c -DBUILD_DLL ${file} && g++ -m32 -shared -o \"${file_base_name}\".dll \"${file_base_name}.o\" -Wl,--kill-at,--out-implib,\"${file_base_name}\".a"
+            "shell_cmd": "gcc -m32 -c -DBUILD_DLL \"${file}\" && g++ -m32 -shared -o \"${file_base_name}\".dll \"${file_base_name}.o\" -Wl,--kill-at,--out-implib,\"${file_base_name}\".a"
         },
         {
                 "name": "BulidDLL64",
-                "shell_cmd": "gcc -m64 -c -DBUILD_DLL ${file} && g++ -m64 -shared -o \"${file_base_name}\".dll \"${file_base_name}.o\" -Wl,--kill-at,--out-implib,\"${file_base_name}\".a"
+                "shell_cmd": "gcc -m64 -c -DBUILD_DLL \"${file}\" && g++ -m64 -shared -o \"${file_base_name}\".dll \"${file_base_name}.o\" -Wl,--kill-at,--out-implib,\"${file_base_name}\".a"
             }
 ],
     "encoding": "cp936"
