@@ -11,6 +11,8 @@
 extern "C" {
 #endif
     DLL_EXPORT int __stdcall foo(int x);
+    DLL_EXPORT double __stdcall Add(double *a, double b);
+
 #ifdef __cplusplus
 }
 #endif
