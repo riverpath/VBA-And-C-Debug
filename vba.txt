@@ -1,0 +1,37 @@
+
+Public Sub test()
+Dim oShell, exeRs
+
+
+Set ofs = Application.FileDialog(msoFileDialogFolderPicker)
+With ofs
+.InitialFileName = "C:\Users\EdgeRight\Desktop"
+
+If .Show = -1 Then
+folder_path = .SelectedItems(1)
+'folder_path = Replace(folder_path, Chr(32), "\\")
+Else
+Exit Sub
+End If
+End With
+    Set oShell = CreateObject("WSCript.shell")
+    commandLine = "cmd /c dir /b/s " & quot(folder_path)
+    Set exeRs = oShell.Exec(commandLine)
+    errMsg = exeRs.StdErr.ReadAll()
+    stdMsg = exeRs.StdOut.ReadAll()
+'    WScript.echo "errMsg:" & errMsg & "stdMsg:" & stdMsg
+'    ret = oShell.Run(commandLine, 0, True)
+'    WScript.echo "run method return value:" & ret
+dir_file = Split(stdMsg, vbCrLf)
+list_qty = UBound(dir_file, 1)
+[a1].Resize(list_qty + 1, 1) = Application.Transpose(dir_file)
+    Set oShell = Nothing
+    Set exeRs = Nothing
+End Sub
+
+Function quot(ByVal x As String) As String
+With WorksheetFunction
+quot = .Rept(Chr(34), 4) & x & .Rept(Chr(34), 4)
+End With
+End Function
+
